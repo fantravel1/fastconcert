@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Coming Soon — FastConcert | Concert Radar for Live Music Tonight</title>
+    <meta name="description" content="This feature is coming soon to FastConcert — the live music radar for concerts tonight, tomorrow, and this weekend within 100km. Ranked by FastScore. One tap to go.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://fastconcert.com/coming-soon">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9889;</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --c-bg: #0a0a0f;
+            --c-bg-alt: #111118;
+            --c-text: #f0f0f5;
+            --c-text-muted: #8a8a9a;
+            --c-accent: #ff6b35;
+            --c-accent-hover: #ff8555;
+            --c-border: rgba(255,255,255,0.06);
+            --f-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --f-display: 'Space Grotesk', 'Inter', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--f-body);
+            background: var(--c-bg);
+            color: var(--c-text);
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Background */
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg__orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.12;
+        }
+
+        .bg__orb--1 {
+            width: 600px;
+            height: 600px;
+            background: #ff6b35;
+            top: -200px;
+            right: -200px;
+            animation: orb-drift 20s ease infinite alternate;
+        }
+
+        .bg__orb--2 {
+            width: 500px;
+            height: 500px;
+            background: #f7c948;
+            bottom: -150px;
+            left: -150px;
+            animation: orb-drift 25s ease infinite alternate-reverse;
+        }
+
+        .bg__orb--3 {
+            width: 400px;
+            height: 400px;
+            background: #48f7a0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orb-drift 18s ease infinite alternate;
+        }
+
+        @keyframes orb-drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, -30px); }
+        }
+
+        .bg__grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo__icon { font-size: 2rem; line-height: 1; }
+
+        .logo__text {
+            font-family: var(--f-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo__accent { color: var(--c-accent); }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,107,53,0.1);
+            border: 1px solid rgba(255,107,53,0.2);
+            color: var(--c-accent);
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .tag__dot {
+            width: 8px;
+            height: 8px;
+            background: var(--c-accent);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        h1 {
+            font-family: var(--f-display);
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b35, #f7c948, #48f7a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--c-text-muted);
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        /* Radar Animation */
+        .radar {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 3rem;
+        }
+
+        .radar__ring {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255,107,53,0.2);
+            border-radius: 50%;
+            animation: radar-expand 3s ease infinite;
+        }
+
+        .radar__ring:nth-child(2) { animation-delay: 1s; }
+        .radar__ring:nth-child(3) { animation-delay: 2s; }
+
+        .radar__center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--c-accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px rgba(255,107,53,0.5);
+        }
+
+        .radar__sweep {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--c-accent), transparent);
+            transform-origin: left center;
+            animation: radar-sweep 4s linear infinite;
+        }
+
+        @keyframes radar-expand {
+            0% { transform: scale(0.3); opacity: 1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        @keyframes radar-sweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* CTA */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--f-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn--primary {
+            background: var(--c-accent);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .btn--primary:hover {
+            background: var(--c-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(255,107,53,0.5);
+        }
+
+        .btn--ghost {
+            background: transparent;
+            color: var(--c-text-muted);
+            border: 1px solid var(--c-border);
+        }
+
+        .btn--ghost:hover {
+            color: var(--c-text);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Features hint */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 3rem;
+            max-width: 500px;
+        }
+
+        .feature-chip {
+            padding: 0.4rem 0.85rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--c-border);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            color: var(--c-text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--c-border);
+        }
+
+        .footer p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.25);
+        }
+
+        @media (min-width: 640px) {
+            .cta-group {
+                flex-direction: row;
+            }
+
+            .radar {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @supports (padding: env(safe-area-inset-bottom)) {
+            .footer {
+                padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="bg" aria-hidden="true">
+        <div class="bg__orb bg__orb--1"></div>
+        <div class="bg__orb bg__orb--2"></div>
+        <div class="bg__orb bg__orb--3"></div>
+        <div class="bg__grid"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content">
+        <a href="/" class="logo">
+            <span class="logo__icon">&#9889;</span>
+            <span class="logo__text">Fast<span class="logo__accent">Concert</span></span>
+        </a>
+
+        <div class="tag">
+            <span class="tag__dot"></span>
+            <span>Building Something Epic</span>
+        </div>
+
+        <!-- Radar Animation -->
+        <div class="radar" aria-hidden="true">
+            <div class="radar__ring"></div>
+            <div class="radar__ring"></div>
+            <div class="radar__ring"></div>
+            <div class="radar__center"></div>
+            <div class="radar__sweep"></div>
+        </div>
+
+        <h1>Coming <span class="gradient-text">Soon</span></h1>
+
+        <p class="subtitle">We're building the world's fastest concert radar. Every show within 100km, ranked by quality, one tap to go. The stage is almost set.</p>
+
+        <div class="cta-group">
+            <a href="/" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+                Back to Home
+            </a>
+            <a href="/" class="btn btn--ghost">Explore Homepage</a>
+        </div>
+
+        <div class="features">
+            <span class="feature-chip">Concerts Tonight</span>
+            <span class="feature-chip">Next 48 Hours</span>
+            <span class="feature-chip">Within 100km</span>
+            <span class="feature-chip">FastScore Ranking</span>
+            <span class="feature-chip">Free Concert Finder</span>
+            <span class="feature-chip">Vibe Tags</span>
+            <span class="feature-chip">Map View</span>
+            <span class="feature-chip">Pulse View</span>
+            <span class="feature-chip">Bring Someone</span>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; FastConcert.com. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
